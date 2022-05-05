@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+    <header>
+        <title>¿Es el mejor momento para construir tu vivienda?</title>
+    </header>
+    <meta charset="UTF8">
+<main>
+    <div class="content">
+        <div class="content-title">
+            <h1>¿Es el mejor momento para construir tu vivienda?</h1>
+        </div>
+        <div>
+            <p style="font-size: small; color: gray; font-size: 15px;">
+                Autor: Enmanuel Verdesia Suárez
+            </p>
+        </div>
+        <div class="content-chart">
+            <canvas id="chart" width="500" height="500"></canvas>
+        </div>
+        <div class="content-text">
+            <p>
+                A lo largo del período 2015-2020 se puede apreciar una reducción en la producción de materiales de la construcción. La producción de hierro y acero son las más afectadas decayendo esta última más de un 70% respecto a su máximo del período. De igual manera, han disminuido más de un 30% las producciones de cemento gris, tejas de asbesto cemento y bloques de hormigón.
+            </p>
+            <p>
+                A pesar de presentar en el año 2020 el punto mínimo para la producción de estos materiales se logró cumplir el plan de construcción de viviendas un 95% y el de hormigón prefabricado un 93%. Principalmente se ve la afectación en el desarrollo nacional de inversiones, la construcción de infraestructura y la industria metalúrgica, dentro de los cuales, el acero y el hierro tienen especial importancia.
+            </p>
+            <p> 
+                Disímiles son las causas de la disminución en la producción, destacándose elevados precios de importación y alto costo de fletes. Sumando a esto el aumento de las sanciones impuestas por el gobierno de Trump antes de dejar la Casa Blanca, a día de hoy y sin contar con las estadísticas exactas, sabemos que estamos lejos de la recuperación.
+            </p>
+            <p>
+                Para los cubanos la construcción o reparación de una vivienda es un proceso de meses o años. Normalmente no se tiene todo el capital necesario para la ejecución inmediata y se terminan las obras mucho tiempo después de lo planeado. En fecha reciente, abril del 2022, sufrimos un aumento de los precios por el Ministerio de Comercio Interior para los productos minoristas en pesos cubanos de los materiales de la construcción. Este tipo de medidas, acordes a la situación actual, sumadas a la escasez afecta directamente estas obras personales de las familias. Se trabaja en mantener facilidades para la venta a plazos y el uso de créditos bancarios, pero aún así, es un duro golpe para la familia cubana que necesita de estos recursos para reparar su vivienda y que ya está atravesando una dura etapa causada por la inflación y el desabastecimiento.
+            </p>
+        </div>
+    </div>
+</main>
+</html>
+
+<style>
+.content {
+    max-width: 1000px;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    background-color: aliceblue;
+    padding: 30 30 30 30;
+}
+
+.content-title {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+p {
+    font-size: 22px;
+    text-align: justify;
+    font-family: Arial, Helvetica, sans-serif;
+}
+</style>
+  
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+const ctx = document.getElementById('chart');
+
+const acero_color = "rgb(251, 86, 7)" // orange
+const hierro_color = "rgb(255, 190, 11)"
+const cemento_color = "rgb(131, 56, 236)"
+const tejas_color = "rgb(255, 0, 110)"
+const bloques_color = "rgb(58, 134, 255)"
+
+const myChart = new Chart(ctx, {
+    type: 'line',
+    data: {
+        labels: ["2015", "2016", "2017", "2018", "2019", "2020"],
+        datasets: [
+            {
+                label: "acero",
+                data: [100.0, 93.7, 91.8, 82.6, 66.1, 56.2],
+                backgroundColor: Array(6).fill(acero_color),
+                borderColor: Array(6).fill(acero_color),
+                borderWidth: 2
+            },
+            {
+                label: "hierro",
+                data: [100.0, 91.6, 75.4, 79.5, 64.8, 49.9],
+                backgroundColor: Array(6).fill(hierro_color),
+                borderColor: Array(6).fill(hierro_color),
+                borderWidth: 2
+            },
+            {
+                label: "cemento gris",
+                // data: [0, 93.8, 89.9, 100.0, 83.9, 63.8],
+                data: [
+                    {x: "2016", y: 93.8},
+                    {x: "2017", y: 89.9},
+                    {x: "2018", y: 100.0},
+                    {x: "2019", y: 83.9},
+                    {x: "2020", y: 63.8},
+                ],
+                backgroundColor: Array(5).fill(cemento_color),
+                borderColor: Array(5).fill(cemento_color),
+                borderWidth: 2
+            },
+            {
+                label: "tejas de asbesto cemento",
+                // data: [0, 89.8, 87.9, 100.0, 53.7, 22.9],
+                data: [
+                    {x: "2016", y: 89.8},
+                    {x: "2017", y: 87.9},
+                    {x: "2018", y: 100.0},
+                    {x: "2019", y: 53.7},
+                    {x: "2020", y: 22.9},
+                ],
+                backgroundColor: Array(5).fill(tejas_color),
+                borderColor: Array(5).fill(tejas_color),
+                borderWidth: 2
+            },
+            {
+                label: "bloques de hormigón",
+                // data: [0, 91.9, 97.5, 100.0, 79.6, 63.0],
+                data: [
+                    {x: "2016", y: 91.9},
+                    {x: "2017", y: 97.5},
+                    {x: "2018", y: 100.0},
+                    {x: "2019", y: 79.6},
+                    {x: "2020", y: 63.0},
+                ],
+                backgroundColor: Array(5).fill(bloques_color),
+                borderColor: Array(5).fill(bloques_color),
+                borderWidth: 2
+            },
+        ]
+    },
+    options: {
+        responsive: true,
+        plugins: {
+            title: {
+                display: true,
+                font: {
+                    size: 16
+                },
+                text: "Producción de materiales de la construcción en el período 2015-2020"
+            },
+            legend : {
+                position: "bottom",
+                labels: {
+                    font: {
+                        size: 16
+                    }
+                }
+            }
+        },
+        scales: {
+            x: {
+                display: true,
+                title: {
+                    display: true,
+                    text: "años",
+                    size: 16
+                }
+            },
+            y: {
+                display: true,
+                title: {
+                    display: true,
+                    text: "% respecto al máximo del período",
+                    size: 16
+                },
+                beginAtZero: true,
+            }
+        },
+        spanGaps: false,
+    }
+});
+</script>
